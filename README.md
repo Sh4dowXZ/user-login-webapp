@@ -14,10 +14,14 @@ This web app allows users to register and log in securely using a **SQLite datab
 
 ## 💻 How-To
 
-1. Clone the repo:
+- **Clone** the repo:
    ```bash
    git clone https://github.com/Sh4dowXZ/user-login-webapp.git
+   ```
+- **Access BytePass** from your browser:<br>
+  ➡ [https://bytepass.onrender.com/register](https://bytepass.onrender.com/register)
+
 
 ## 📜 Credits
-Made with **tech-passion** and **cybersecurity-driven** by Márcio Mota (Sh4dowXZ) <br>
+Made with **tech-passion** and **cybersecurity-driven** by Márcio Mota ([Sh4dowXZ](https://github.com/Sh4dowXZ)) <br>
 This is my first full-stack web project — more coming soon!
