@@ -98,5 +98,9 @@ def login():
     return render_template('login.html')
 
 if __name__ == '__main__':  # Only run this if the file is executed directly
-    app.run(debug=True)  # Start the Flask server with debug mode (auto-reload + error messages)
+    import os
+
+    port = int(os.environ.get("PORT", 5000)) # uses the port Render assigns during deployment
+    app.run(host='0.0.0.0', port=port) # Flask becomes visible to the outside world (not just localhost)
+
 
