@@ -65,6 +65,13 @@ source .venv/bin/activate
 source .venv/bin/activate.fish
 ```
 
+**macOS/Linux**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
 **Windows (PowerShell)**
 
 ```powershell
