@@ -8,10 +8,9 @@ import sqlite3
 app = Flask(__name__)  # __name__ tells Flask this file is the main entry point of the app
 
 
-@app.route('/')  # When the user accesses "http://127.0.0.1:5000/", this function will run
+@app.route('/')
 def home():
-    return ("Welcome to my Database Webserver! Hope you enjoy this little project!\n    "
-            "Hint: /register")
+    return render_template('index.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -39,13 +38,15 @@ def register():
             conn.commit()
             # Saved the database like just like you do with a 'Word Document'
 
-            message = f"User '{username}' registered successfully!"
+            message = f"User '{username}' registered successfully! You can login now."
+            message_type = 'success'
             # Changes the 'message' variable that will show a message in the webpage in the end of this function
             # Which in this case, will show after the new user gets successfully added
 
         except sqlite3.IntegrityError:
             # If we find another user with the same name as what was given to us, then this code will run:
             message = f"Username '{username}' is already taken."
+            message_type = 'danger'
             # Changes the 'message' variable that will show a message in the webpage in the end of this function
 
         finally:
@@ -54,10 +55,9 @@ def register():
             # ATTENTION: "conn.close()" is SUPER important! This will close the database, and we helps prevent data loss
             # We should always end our code by closing the database.
 
-        return message
-        # Returns the message so it appears in the browser as a plain text response.
+        return render_template('register.html', message=message, message_type=message_type)
 
-    return render_template('register.html')
+    return render_template('register.html', message=None, message_type='info')
     # Loads and returns the 'register.html' template
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -89,13 +89,13 @@ def login():
             # 2 -> passwords
             if check_password_hash(stored_hash, raw_password):
                 # encrypts the "raw_password" attempt and checks if there's any match in the passwords row
-                return f"Welcome back, {username}!"
+                return render_template('login.html', message=f"Welcome back, {username}!", message_type='success')
             else:
-                return f"Wrong password for {username}!"
+                return render_template('login.html', message=f"Wrong password for {username}.", message_type='danger')
         else:
-            return "Invalid username or password."
+            return render_template('login.html', message='Invalid username or password.', message_type='danger')
 
-    return render_template('login.html')
+    return render_template('login.html', message=None, message_type='info')
 
 if __name__ == '__main__':  # Only run this if the file is executed directly
     import os
