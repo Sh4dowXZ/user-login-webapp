@@ -45,6 +45,26 @@ cd user-login-webapp
 
 ### 2) (Optional but recommended) Create a virtual environment
 
+Create the environment:
+
+```bash
+python3 -m venv .venv
+```
+
+Activate it with the command for your shell:
+
+**macOS/Linux (bash/zsh/sh)**
+
+```bash
+source .venv/bin/activate
+```
+
+**macOS/Linux (fish shell)**
+
+```fish
+source .venv/bin/activate.fish
+```
+
 **macOS/Linux**
 
 ```bash
